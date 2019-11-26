@@ -9,8 +9,8 @@
 import Foundation
 
 class UserArray: ObservableObject {
-  @Published var users = [User]()
-
-  static let shared = UserArray()
-  private init(){}
+    @Published var persons = [UserDTO]()
+    
+    static let shared = UserArray()
+    private init(){}
 }

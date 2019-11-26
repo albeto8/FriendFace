@@ -9,6 +9,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(entity: User.entity(), sortDescriptors: []) var users: FetchedResults<User>
+    
     @ObservedObject var userArray = UserArray.shared
     @State private var isLoadingUsers = true
 
@@ -16,9 +19,9 @@ struct ContentView: View {
       NavigationView {
         VStack {
           List {
-            ForEach(userArray.users, id: \.self) { user in
-              NavigationLink(destination: UserDetail(userId: user.id)) {
-                Text("\(user.name)")
+            ForEach(self.users, id: \.self) { user in
+              NavigationLink(destination: UserDetail(userId: user.wrappedID)) {
+                Text("\(user.wrappedName)")
               }
             }
           }
@@ -30,6 +33,10 @@ struct ContentView: View {
 
   func fetchUsers() {
       self.isLoadingUsers = true
+    guard self.users.count == 0 else {
+        self.isLoadingUsers = false
+        return
+    }
       let url = URL(string: "https://www.hackingwithswift.com/samples/friendface.json")!
       var request = URLRequest(url: url)
       request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -40,9 +47,29 @@ struct ContentView: View {
               self.isLoadingUsers = false
               return
           }
-        if let decodedUsers = try? JSONDecoder().decode([User].self, from: data) {
+        if let decodedUsers = try? JSONDecoder().decode([UserDTO].self, from: data) {
           DispatchQueue.main.async {
-            self.userArray.users = decodedUsers
+            self.userArray.persons = decodedUsers
+            for userDTO in decodedUsers {
+                let user = User(context: self.moc)
+                user.id = UUID(uuidString: userDTO.id)
+                user.isActive = userDTO.isActive
+                user.name = userDTO.name
+                user.age = Int16(userDTO.age)
+                user.company = userDTO.company
+                user.email = userDTO.email
+                user.address = userDTO.address
+                user.about = userDTO.about
+                user.registered = userDTO.registered
+                //user.tags = userDTO.tags
+                for friendDTO in userDTO.friends ?? [] {
+                    let friend = Friend(context: self.moc)
+                    friend.id = UUID(uuidString: friendDTO.id)
+                    friend.name = friendDTO.name
+                    user.addToFriends(friend)
+                }
+            }
+            try? self.moc.save()
             self.isLoadingUsers = false
           }
         } else {

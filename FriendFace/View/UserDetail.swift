@@ -9,22 +9,21 @@
 import SwiftUI
 
 struct UserDetail: View {
-
-    var user: User?
+    var fetchRequest: FetchRequest<User>
+    var user: User? { fetchRequest.wrappedValue.first }
 
     init(userId: String) {
-      let currentUser = UserArray.shared.users.first(where: { $0.id == userId })
-      self.user = currentUser
+        fetchRequest = FetchRequest<User>(entity: User.entity(), sortDescriptors: [], predicate: NSPredicate(format: "%K == %@", "id", userId))
     }
 
     var body: some View {
       List {
         Text("\(user?.name ?? "")")
         Text("\(user?.about ?? "")")
-        ForEach(user?.friends ?? [], id: \.self) { friend in
-          NavigationLink(destination: UserDetail(userId: friend.id)) {
-            Text("\(friend.name)")
-            Text("\(friend.id)")
+        ForEach(user?.friendsArray ?? [], id: \.self) { friend in
+          NavigationLink(destination: UserDetail(userId: friend.wrappedID)) {
+            Text("\(friend.wrappedName)")
+            Text("\(friend.wrappedID)")
           }
         }
       }
