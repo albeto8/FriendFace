@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F2B32174238DF4BD00CC07DF /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B32173238DF4BD00CC07DF /* UserInfoView.swift */; };
+		F2B32176238E008200CC07DF /* FriendCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B32175238E008200CC07DF /* FriendCellView.swift */; };
 		F2E4C620238D8C3D006BBB73 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E4C61C238D8C3D006BBB73 /* User+CoreDataClass.swift */; };
 		F2E4C621238D8C3D006BBB73 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E4C61D238D8C3D006BBB73 /* User+CoreDataProperties.swift */; };
 		F2E4C622238D8C3D006BBB73 /* Friend+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E4C61E238D8C3D006BBB73 /* Friend+CoreDataClass.swift */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F2B32173238DF4BD00CC07DF /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
+		F2B32175238E008200CC07DF /* FriendCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCellView.swift; sourceTree = "<group>"; };
 		F2E4C61C238D8C3D006BBB73 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		F2E4C61D238D8C3D006BBB73 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		F2E4C61E238D8C3D006BBB73 /* Friend+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Friend+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
@@ -111,6 +115,8 @@
 			children = (
 				F84E394B238C85B000506712 /* ContentView.swift */,
 				F84E395D238C8D7C00506712 /* UserDetail.swift */,
+				F2B32173238DF4BD00CC07DF /* UserInfoView.swift */,
+				F2B32175238E008200CC07DF /* FriendCellView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -189,6 +195,7 @@
 				F84E394A238C85B000506712 /* FriendFace.xcdatamodeld in Sources */,
 				F2E4C622238D8C3D006BBB73 /* Friend+CoreDataClass.swift in Sources */,
 				F2E4C623238D8C3D006BBB73 /* Friend+CoreDataProperties.swift in Sources */,
+				F2B32174238DF4BD00CC07DF /* UserInfoView.swift in Sources */,
 				F84E395E238C8D7C00506712 /* UserDetail.swift in Sources */,
 				F84E3945238C85B000506712 /* AppDelegate.swift in Sources */,
 				F82DD88E238C9AC0007C9E27 /* UserArray.swift in Sources */,
@@ -197,6 +204,7 @@
 				F2E4C620238D8C3D006BBB73 /* User+CoreDataClass.swift in Sources */,
 				F84E3947238C85B000506712 /* SceneDelegate.swift in Sources */,
 				F2E4C621238D8C3D006BBB73 /* User+CoreDataProperties.swift in Sources */,
+				F2B32176238E008200CC07DF /* FriendCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

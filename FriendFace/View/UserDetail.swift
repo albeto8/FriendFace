@@ -17,16 +17,19 @@ struct UserDetail: View {
     }
 
     var body: some View {
-      List {
-        Text("\(user?.name ?? "")")
-        Text("\(user?.about ?? "")")
-        ForEach(user?.friendsArray ?? [], id: \.self) { friend in
-          NavigationLink(destination: UserDetail(userId: friend.wrappedID)) {
-            Text("\(friend.wrappedName)")
-            Text("\(friend.wrappedID)")
-          }
+        VStack {
+            UserInfoView(user: user!)
+            Text("Friend List")
+                .bold()
+            List {
+                ForEach(user?.friendsArray ?? [], id: \.self) { friend in
+                  NavigationLink(destination: UserDetail(userId: friend.wrappedID)) {
+                    FriendCellView(friend: friend)
+                  }
+                }
+            }
         }
-      }
+        .navigationBarTitle(user != nil ? user!.wrappedName : "No name")
     }
 }
 

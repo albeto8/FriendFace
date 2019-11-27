@@ -29,7 +29,6 @@ extension User {
     @NSManaged public var tags: NSObject?
     @NSManaged public var friends: NSSet?
     
-    
     public var wrappedID: String {
         if let id = id {
             return id.uuidString
@@ -38,7 +37,23 @@ extension User {
     }
     
     public var wrappedName: String {
-        return name ?? ""
+        return name ?? "No name"
+    }
+    
+    public var wrappedCompany: String {
+        return company ?? "No company"
+    }
+    
+    public var wrappedEmail: String {
+        return email ?? "No email"
+    }
+    
+    public var wrappedAddress: String {
+        return email ?? "No email"
+    }
+    
+    public var wrappedAbout: String {
+        return about ?? "No data about this user"
     }
     
     public var friendsArray: [Friend] {
